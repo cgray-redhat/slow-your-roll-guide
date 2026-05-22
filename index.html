@@ -268,8 +268,12 @@
     .hero-content {
       position: relative;
       max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
       animation: fadeUp 0.8s ease-out;
     }
+
+    .hero-tagline { margin-left: auto; margin-right: auto; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -333,6 +337,79 @@
 
     .hero-cta svg { width: 18px; height: 18px; }
 
+    .property-photo {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .property-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-photo {
+      aspect-ratio: 4 / 3;
+      min-height: 220px;
+    }
+
+    .welcome-intro {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .welcome-intro {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .welcome-intro-text .welcome-logo,
+    .welcome-intro-logo {
+      display: block;
+      max-width: min(200px, 55vw);
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .welcome-intro-text h2 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      color: var(--ocean-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-intro-text p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .property-photo--tall img {
+      aspect-ratio: 4 / 3;
+      min-height: 240px;
+    }
+
+    @media (min-width: 768px) {
+      .property-photo--tall img { aspect-ratio: 3 / 4; min-height: 320px; }
+    }
+
+    .property-photo--wide img {
+      aspect-ratio: 21 / 9;
+      max-height: 320px;
+    }
+
+    .explore-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     /* ——— Layout ——— */
     main { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem 4rem; }
 
@@ -369,6 +446,10 @@
       color: var(--text-muted);
       font-size: 1.05rem;
       max-width: 640px;
+    }
+
+    .section-photo {
+      margin-bottom: 2rem;
     }
 
     /* ——— Feature grid ——— */
@@ -1027,10 +1108,16 @@
   <main>
     <!-- 1. Welcome & Home Info -->
     <section id="welcome">
-      <div class="section-header">
-        <span class="section-label">Your stay</span>
-        <h2>Welcome to Slow Your Roll</h2>
-        <p>We're so glad you're here. Below you'll find everything you need to settle in and enjoy your beach getaway. If there more information that would be helpful please let us know in the feedback form at the bottom of this guide.</p>
+      <div class="welcome-intro">
+        <div class="welcome-intro-text">
+          <img class="welcome-logo" src="Slowyourroll-logo.png" alt="Slow Your Roll" width="200" height="auto" />
+          <span class="section-label">Your stay</span>
+          <h2>Welcome to Slow Your Roll</h2>
+          <p>We're so glad you're here. Below you'll find everything you need to settle in and enjoy your beach getaway. If there more information that would be helpful please let us know in the feedback form at the bottom of this guide.</p>
+        </div>
+        <figure class="property-photo property-photo--tall">
+          <img src="images/169823737.jpg" alt="Slow Your Roll oceanfront home on Topsail Beach" width="600" height="800" loading="eager" decoding="async" />
+        </figure>
       </div>
       <div class="feature-grid">
         <article class="feature-card">
@@ -1038,7 +1125,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20c2-4 6-8 10-10 4-2 8-2 10 0"/><path d="M12 2v8"/></svg>
           </div>
           <h3>Oceanfront & Beach Access</h3>
-          <p>Step directly onto the sand from our oceanfront property — no long walks to the water.<br />We are also over a quarter mile from any public access so you should have the beach to yourself.<br />Please set up in front of the house to be considerate to our neighbors.</p>
+          <p>Step directly onto the sand from our oceanfront property — no long walks to the water.<br /><br />We are also over a quarter mile from any public access so you should have the beach to yourself.<br /><br />Please set up in front of the house to be considerate to our neighbors.</p>
         </article>
         <article class="feature-card">
           <div class="feature-icon">
@@ -1056,21 +1143,21 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
           </div>
           <h3>TVs with Roku</h3>
-          <p>Every TV has a Roku — one in the living room and one in each bedroom.<br />Each Roku is set to <strong>Guest Mode</strong>, so you can sign into your own streaming accounts (Netflix, Hulu, Disney+, and more).<br />Your accounts will automatically be logged out on your checkout date for your privacy.</p>
+          <p>Every TV has a Roku — one in the living room and one in each bedroom.<br /><br />Each Roku is set to <strong>Guest Mode</strong>, so you can sign into your own streaming accounts (Netflix, Hulu, Disney+, and more).<br /><br />Your accounts will automatically be logged out on your checkout date for your privacy.</p>
         </article>
         <article class="feature-card">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>
           </div>
           <h3>Central Air Conditioning</h3>
-          <p>Keep cool and comfortable with central AC on warm Carolina days.<br />The controls are located on the wall next to the half bath and hallway upstairs.</p>
+          <p>Keep cool and comfortable with central AC on warm Carolina days.<br /><br />The controls are located on the wall next to the half bath and hallway upstairs.</p>
         </article>
         <article class="feature-card">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           </div>
           <h3>Full Stainless Kitchen</h3>
-          <p>Cook and gather around a spacious kitchen with a large island — perfect for family meals.<br />The extra refrigerator is located in the garage.<br />We have a standard coffee machine and Keurig for your convenience.</p>
+          <p>Cook and gather around a spacious kitchen with a large island — perfect for family meals.<br /><br />The extra refrigerator is located in the garage.<br /><br />We have a standard coffee machine and Keurig for your convenience.</p>
         </article>
         <article class="feature-card">
           <div class="feature-icon">
@@ -1084,7 +1171,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
           </div>
           <h3>Basement Game Room</h3>
-          <p>Fun downstairs with an air hockey table, dart board, foosball table, and a arcade mnachines.<br />The large arcade machines power switch is a push button near the top left, rear corner.<br />We have it set to turn off automatically at 1AM each morning to prevent burn-in.</p>
+          <p>Fun downstairs with an air hockey table, dart board, foosball table, and a arcade mnachines.<br /><br />The large arcade machines power switch is a push button near the top left, rear corner.<br /><br />We have it set to turn off automatically at 1AM each morning to prevent burn-in.</p>
         </article>
       </div>
     </section>
@@ -1134,9 +1221,9 @@
         <p>A quieter slice of the North Carolina coast — perfect for families, couples, and anyone who loves unhurried beach days.</p>
       </div>
       <div class="explore-card">
-        <div class="explore-visual" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </div>
+        <figure class="explore-visual property-photo">
+          <img src="images/169823739.jpg" alt="Ocean views from the deck at Slow Your Roll" width="800" height="600" loading="lazy" decoding="async" />
+        </figure>
         <div>
           <h3>Topsail Beach at a Glance</h3>
           <p style="color: var(--text-muted); margin-top: 0.5rem;">Topsail Beach offers a more relaxed pace than busier resort towns — wide stretches of sand, friendly locals, and that classic Carolina coastal charm.</p>
@@ -1165,6 +1252,9 @@
         <h2>Best Rated Restaurants & Activities</h2>
         <p>Top spots in Surf City and Topsail Beach, sorted by Google Maps star rating (highest first). Tap a restaurant to open its Google Maps listing.</p>
       </div>
+      <figure class="property-photo property-photo--wide section-photo">
+        <img src="images/169823742.jpg" alt="Bright living and dining space at Slow Your Roll" width="1100" height="470" loading="lazy" decoding="async" />
+      </figure>
 
       <h3 class="card-section-title">Restaurants — Surf City & Topsail Beach</h3>
       <p class="restaurant-note">Ratings reflect Google Maps as of early 2026 and may change. Confirm hours before you go.</p>
@@ -1371,6 +1461,9 @@
         <h2>Checkout Procedures</h2>
         <p>Thank you for staying with us! Please complete the following before you depart so the home is ready for the next guests.</p>
       </div>
+      <figure class="property-photo section-photo checkout-photo">
+        <img src="images/169823747.jpg" alt="Spacious kitchen with stainless appliances at Slow Your Roll" width="1100" height="620" loading="lazy" decoding="async" />
+      </figure>
       <div class="checkout-time">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <div>
