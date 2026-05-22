@@ -1094,7 +1094,7 @@
           <h2>Help Us Improve Slow Your Roll</h2>
           <p>Share ideas, suggestions, or small touches that would make the home even better for future guests. We read every message.</p>
         </div>
-        <form class="feedback-form" id="feedbackForm" action="mailto:slowyourroll@gmail.com" method="GET">
+        <form class="feedback-form" id="feedbackForm" action="#" method="POST">
           <label for="improvementMessage">Your ideas & suggestions</label>
           <textarea
             id="improvementMessage"
@@ -1107,6 +1107,16 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         </form>
+        <script>
+          document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var textarea = document.getElementById('improvementMessage');
+            var suggestion = encodeURIComponent(textarea.value.trim());
+            var subject = encodeURIComponent('Slow Your Roll - Guest Suggestion');
+            var mailtoURL = 'mailto:slowyourroll@gmail.com?subject=' + subject + '&body=' + suggestion;
+            window.location.href = mailtoURL;
+          });
+        </script>
       </div>
     </section>
   </main>
@@ -1122,8 +1132,6 @@
       var navToggle = document.getElementById("navToggle");
       var navLinks = document.getElementById("navLinks");
       var navOverlay = document.getElementById("navOverlay");
-      var feedbackForm = document.getElementById("feedbackForm");
-      var messageField = document.getElementById("improvementMessage");
 
       function closeMenu() {
         navLinks.classList.remove("open");
@@ -1173,15 +1181,6 @@
 
       window.addEventListener("scroll", setActiveNav);
       setActiveNav();
-
-      feedbackForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var body = encodeURIComponent(messageField.value.trim());
-        if (!body) return;
-        var subject = encodeURIComponent("Property Improvement Idea - Slow Your Roll");
-        window.location.href =
-          "mailto:slowyourroll@gmail.com?subject=" + subject + "&body=" + body;
-      });
     })();
   </script>
 </body>
