@@ -495,9 +495,9 @@
     a.contact-item:hover { color: inherit; }
 
     .contact-item-link {
-      font-size: 1rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      word-break: break-word;
+      white-space: nowrap;
     }
 
     @media (min-width: 900px) {
@@ -1074,13 +1074,6 @@
         </article>
         <article class="feature-card">
           <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 18V6a2 2 0 00-2-2H4a2 2 0 00-2 2v11a1 1 0 001 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 001-1v-3.65a1 1 0 00-.33-.75l-2.49-2.35a1 1 0 00-.67-.25H16"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
-          </div>
-          <h3>Ground-Floor Garage</h3>
-          <p>Load and unload with ease — convenient garage access right on the ground floor.</p>
-        </article>
-        <article class="feature-card">
-          <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M6 12h.01M6 16h.01M10 8h8M10 12h8M10 16h4"/></svg>
           </div>
           <h3>Washer & Dryer</h3>
@@ -1091,7 +1084,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
           </div>
           <h3>Basement Game Room</h3>
-          <p>Fun downstairs with an air hockey table, dart board, foosball table, and a arcade mnachines. The large arcade machines power switch is a push button near the top left, rear corner. We have it set to turn off automatically at 1AM each morning to prevent burn-in. .</p>
+          <p>Fun downstairs with an air hockey table, dart board, foosball table, and a arcade mnachines. The large arcade machines power switch is a push button near the top left, rear corner. We have it set to turn off automatically at 1AM each morning to prevent burn-in.</p>
         </article>
       </div>
     </section>
@@ -1300,6 +1293,30 @@
 
       <h3 class="card-section-title">Activities</h3>
       <div class="card-grid">
+        <a class="place-card place-card-link" href="https://www.google.com/maps/search/?api=1&amp;query=Karen+Beasley+Sea+Turtle+Rescue,+302+Tortuga+Ln,+Surf+City,+NC+28445" target="_blank" rel="noopener noreferrer">
+          <div class="place-card-image beach" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="14" rx="8" ry="5"/><path d="M8 12c-1-2 0-5 4-6 4 1 5 4 4 6"/><path d="M6 15l-2 1M18 15l2 1"/></svg>
+          </div>
+          <div class="place-card-body">
+            <div class="place-card-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.7 · Google Maps</div>
+            <h3>Topsail Beach Turtle Hospital</h3>
+            <p>Visit the Karen Beasley Sea Turtle Rescue &amp; Rehabilitation Center — meet rescued turtles and learn about local conservation.</p>
+            <span class="place-card-tag">Surf City</span>
+            <span class="place-card-maps">Open in Google Maps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+          </div>
+        </a>
+        <a class="place-card place-card-link" href="https://www.google.com/maps/search/?api=1&amp;query=High+Tides+and+Good+Vibes,+13971+NC-50,+Surf+City,+NC+28445" target="_blank" rel="noopener noreferrer">
+          <div class="place-card-image local" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+          </div>
+          <div class="place-card-body">
+            <div class="place-card-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Family favorite</div>
+            <h3>High Tides &amp; Good Vibes</h3>
+            <p>Indoor family entertainment — bowling, laser tag, arcade, ropes course, restaurant, bar, and beer garden on NC-50.</p>
+            <span class="place-card-tag">Surf City</span>
+            <span class="place-card-maps">Open in Google Maps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+          </div>
+        </a>
         <article class="place-card">
           <div class="place-card-image beach" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20c2-4 6-8 10-10 4-2 8-2 10 0"/></svg>
