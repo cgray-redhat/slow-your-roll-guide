@@ -706,6 +706,118 @@
 
     .submit-btn svg { width: 20px; height: 20px; }
 
+    /* ——— Thank-you modal ——— */
+    .thank-you-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity var(--transition), visibility var(--transition);
+    }
+
+    .thank-you-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .thank-you-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(27, 73, 101, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .thank-you-modal-dialog {
+      position: relative;
+      max-width: 420px;
+      width: 100%;
+      padding: 2rem 1.75rem 1.75rem;
+      background: var(--white-pure);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      transform: scale(0.92) translateY(12px);
+      transition: transform var(--transition);
+    }
+
+    .thank-you-modal.is-open .thank-you-modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+
+    .thank-you-modal-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--seafoam-soft), var(--seafoam));
+      border-radius: 50%;
+      color: var(--ocean-deep);
+    }
+
+    .thank-you-modal-icon svg { width: 28px; height: 28px; }
+
+    .thank-you-modal-dialog h3 {
+      font-size: 1.75rem;
+      color: var(--ocean-deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .thank-you-modal-dialog p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    .thank-you-modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--seafoam-soft);
+      border-radius: 50%;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--ocean-deep);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .thank-you-modal-close:hover { background: var(--seafoam); }
+
+    .thank-you-modal-ok { margin-top: 0; width: 100%; max-width: 200px; }
+
+    .feedback-error {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.875rem 1rem;
+      font-size: 0.9rem;
+      color: #8b2e2e;
+      background: #fdeaea;
+      border: 1px solid #f5c2c2;
+      border-radius: var(--radius-sm);
+    }
+
+    .feedback-error.is-visible { display: block; }
+
+    .submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     /* ——— Footer ——— */
     footer {
       text-align: center;
@@ -760,6 +872,19 @@
   </header>
 
   <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+
+  <div class="thank-you-modal" id="thankYouModal" role="dialog" aria-modal="true" aria-labelledby="thankYouTitle" aria-hidden="true">
+    <div class="thank-you-modal-backdrop" id="thankYouBackdrop" aria-hidden="true"></div>
+    <div class="thank-you-modal-dialog">
+      <button type="button" class="thank-you-modal-close" id="thankYouClose" aria-label="Close">&times;</button>
+      <div class="thank-you-modal-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3 id="thankYouTitle">Thank you for your feedback!</h3>
+      <p>We greatly appreciate your time and suggestion, and will consider it for a future improvement!</p>
+      <button type="button" class="submit-btn thank-you-modal-ok" id="thankYouOk">Got it</button>
+    </div>
+  </div>
 
   <section class="hero" id="top">
     <div class="hero-content">
@@ -1094,29 +1219,21 @@
           <h2>Help Us Improve Slow Your Roll</h2>
           <p>Share ideas, suggestions, or small touches that would make the home even better for future guests. We read every message.</p>
         </div>
-        <form class="feedback-form" id="feedbackForm" action="#" method="POST">
+        <form class="feedback-form" id="feedbackForm" action="#" method="post" novalidate>
+          <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <label for="improvementMessage">Your ideas & suggestions</label>
           <textarea
             id="improvementMessage"
-            name="body"
+            name="message"
             placeholder="Tell us what would make Slow Your Roll even more special — amenities, layout ideas, local tips to include in this guide, or anything else..."
             required
           ></textarea>
-          <button type="submit" class="submit-btn">
-            Submit to Owner
+          <p class="feedback-error" id="feedbackError" role="alert"></p>
+          <button type="submit" class="submit-btn" id="feedbackSubmitBtn">
+            <span id="feedbackSubmitLabel">Submit to Owner</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         </form>
-        <script>
-          document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            var textarea = document.getElementById('improvementMessage');
-            var suggestion = encodeURIComponent(textarea.value.trim());
-            var subject = encodeURIComponent('Slow Your Roll - Guest Suggestion');
-            var mailtoURL = 'mailto:slowyourroll@gmail.com?subject=' + subject + '&body=' + suggestion;
-            window.location.href = mailtoURL;
-          });
-        </script>
       </div>
     </section>
   </main>
@@ -1181,6 +1298,101 @@
 
       window.addEventListener("scroll", setActiveNav);
       setActiveNav();
+
+      var feedbackForm = document.getElementById("feedbackForm");
+      var improvementMessage = document.getElementById("improvementMessage");
+      var feedbackError = document.getElementById("feedbackError");
+      var feedbackSubmitBtn = document.getElementById("feedbackSubmitBtn");
+      var feedbackSubmitLabel = document.getElementById("feedbackSubmitLabel");
+      var thankYouModal = document.getElementById("thankYouModal");
+      var thankYouOk = document.getElementById("thankYouOk");
+      var FEEDBACK_ENDPOINT = "https://formsubmit.co/ajax/slowyourrolltopsail@gmail.com";
+
+      function openThankYouModal() {
+        thankYouModal.classList.add("is-open");
+        thankYouModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        requestAnimationFrame(function () {
+          thankYouOk.focus();
+        });
+      }
+
+      function closeThankYouModal() {
+        thankYouModal.classList.remove("is-open");
+        thankYouModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function hideFeedbackError() {
+        feedbackError.textContent = "";
+        feedbackError.classList.remove("is-visible");
+      }
+
+      function showFeedbackError(message) {
+        feedbackError.textContent = message;
+        feedbackError.classList.add("is-visible");
+      }
+
+      function setSubmitting(isSubmitting) {
+        feedbackSubmitBtn.disabled = isSubmitting;
+        feedbackSubmitLabel.textContent = isSubmitting ? "Sending…" : "Submit to Owner";
+      }
+
+      function sendFeedback(text) {
+        return fetch(FEEDBACK_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            message: text,
+            _subject: "Slow Your Roll - Guest Suggestion",
+            _template: "table",
+            _captcha: "false",
+          }),
+        }).then(function (response) {
+          if (!response.ok) {
+            throw new Error("Send failed");
+          }
+          return response.json();
+        });
+      }
+
+      if (feedbackForm && thankYouModal) {
+        feedbackForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          hideFeedbackError();
+          var text = improvementMessage.value.trim();
+          if (!text) {
+            improvementMessage.focus();
+            return;
+          }
+          setSubmitting(true);
+          sendFeedback(text)
+            .then(function () {
+              improvementMessage.value = "";
+              openThankYouModal();
+            })
+            .catch(function () {
+              showFeedbackError(
+                "We couldn't send your suggestion right now. Please try again in a moment or email slowyourrolltopsail@gmail.com directly."
+              );
+            })
+            .finally(function () {
+              setSubmitting(false);
+            });
+        });
+
+        document.getElementById("thankYouBackdrop").addEventListener("click", closeThankYouModal);
+        document.getElementById("thankYouClose").addEventListener("click", closeThankYouModal);
+        thankYouOk.addEventListener("click", closeThankYouModal);
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && thankYouModal.classList.contains("is-open")) {
+            closeThankYouModal();
+          }
+        });
+      }
     })();
   </script>
 </body>
